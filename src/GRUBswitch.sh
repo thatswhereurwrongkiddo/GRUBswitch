@@ -30,6 +30,7 @@
 #check if script is being run as root
 if [ "$EUID" -ne 0 ]
   then echo "Please run GRUBswitch as root"
+  echo "i.e. 'sudo bash GRUBswitch.sh'"
   exit
 fi
 
