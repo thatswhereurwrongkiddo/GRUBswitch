@@ -27,15 +27,6 @@
 #portions of this file have been copied from install.sh
 #written by Andrei Shevchuk (shvchk on GitHub)
 
-cd grub_th && mv grub_th1 grub_th2.tmp
-mv  grub_th2 grub_th1
-mv  grub_th2.tmp grub_th2
-cp -r grub_th1 /boot/grub/themes
-cd /boot/grub/themes && rm -R GRUBswitch
-mv  grub_th1 GRUBswitch
-
-
-LANG='English'
 
 # Detect distro and set GRUB location and update method
 GRUB_DIR='grub'
@@ -62,6 +53,22 @@ if [ -e /etc/os-release ]; then
         UPDATE_GRUB='grub2-mkconfig -o /boot/grub2/grub.cfg'
     fi
 fi
+
+#copy grub_th1 to GRUB themes directory
+echo 'Copying grub_th1 to GRUB themes directory'
+cd grub_th && cp -r grub_th1 /boot/${GRUB_DIR}/themes
+
+#switch themes
+echo 'Switching themes in GRUBswitch grub_th directory'
+mv grub_th1 grub_th2.tmp
+mv grub_th2 grub_th1
+mv grub_th2.tmp grub_th2
+
+#cd into GRUB themes directory and intialize grub_th1 as new current GRUBswitch theme
+echo 'Changing into GRUB themes directory'
+echo 'Initializing grub_th1 as new current GRUB theme'
+cd /boot/${GRUB_DIR}/themes && rm -R GRUBswitch
+mv grub_th1 GRUBswitch
 
 echo 'Removing other themes from GRUB config'
 sudo sed -i '/^GRUB_THEME=/d' /etc/default/grub
