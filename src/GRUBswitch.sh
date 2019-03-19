@@ -27,6 +27,11 @@
 #portions of this file have been copied from install.sh
 #written by Andrei Shevchuk (shvchk on GitHub)
 
+#check if script is being run as root
+if [ "$EUID" -ne 0 ]
+  then echo "Please run GRUBswitch as root"
+  exit
+fi
 
 # Detect distro and set GRUB location and update method
 GRUB_DIR='grub'
