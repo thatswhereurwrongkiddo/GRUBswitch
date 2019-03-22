@@ -21,14 +21,17 @@ print()
 print("Which would you like to be your next theme?")
 user_choice = input("Type (random) for a random one: ")
 
-if user_choice.lower() == "random":
-    Paths.random()
-else:
-    grub_th1 = int(user_choice)
-    Paths.selection()
-
 class Paths:
     def random():
         pass
     def selection():
         pass
+
+if user_choice.lower() == "random":
+    Paths.random()
+#type(int(user_choice)) needed because if user_choice != "random" and != integer,
+#python will throw "invalid literal" error, instead of proceeding user to Paths.selection(), which could lead
+#to problems later on down the road
+elif type(int(user_choice)) == int:
+    grub_th1 = int(user_choice)
+    Paths.selection()
