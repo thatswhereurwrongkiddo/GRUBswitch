@@ -53,6 +53,7 @@ class Paths:
         ruc = rstr[7]
         if int(ruc) < len(list):
             grub_th1 = list[int(ruc)]
+            ruc = int(ruc)
             Paths.gofor()
         else:
             rstr = str(random.random())
@@ -72,7 +73,7 @@ class GSwitch:
         global grub_th1
         os.system("mv {0} grub_th1".format(grub_th1))
         amount = 1
-        while int(ruc)+1 <= int(len(list)):
+        while ruc+1 < len(list):
             amount = amount + 1
             os.system("mv {0} grub_th{1}".format(list[ruc], amount))
             ruc = ruc + 1
@@ -89,5 +90,4 @@ elif type(int(user_choice)) == int:
     global ruc
     ruc = int(user_choice) - 1
     grub_th1 = list[ruc]
-    ruc = int(user_choice)
     Paths.gofor()
