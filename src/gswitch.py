@@ -71,6 +71,13 @@ class GSwitch:
         global ruc
         global grub_th1
         os.system("mv {0} grub_th1".format(grub_th1))
+        amount = 1
+        while int(ruc)+1 <= int(len(list)):
+            amount = amount + 1
+            os.system("mv {0} grub_th{1}".format(list[ruc], amount))
+            ruc = ruc + 1
+        print("Files renamed!")
+
 
 
 if user_choice.lower() == "random":
@@ -82,4 +89,5 @@ elif type(int(user_choice)) == int:
     global ruc
     ruc = int(user_choice) - 1
     grub_th1 = list[ruc]
+    ruc = int(user_choice)
     Paths.gofor()
