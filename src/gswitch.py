@@ -70,8 +70,7 @@ class GSwitch:
         os.system("clear")
         global ruc
         global grub_th1
-        amount = ruc
-        print(amount)
+        os.system("mv {0} grub_th1".format(grub_th1))
 
 
 if user_choice.lower() == "random":
