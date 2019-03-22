@@ -20,3 +20,8 @@ for i in list:
 print()
 print("Which would you like to be your next theme?")
 user_choice = input("Type (random) for a random one: ")
+
+if user_choice.lower() == "random":
+    pass
+else:
+    pass
