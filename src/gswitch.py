@@ -1,6 +1,30 @@
 #!/bin/python
 
+#MIT License
+
+#Copyright (c) 2019 thatswhereurwrongkiddo
+
+#Permission is hereby granted, free of charge, to any person obtaining a copy
+#of this software and associated documentation files (the "Software"), to deal
+#in the Software without restriction, including without limitation the rights
+#to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#copies of the Software, and to permit persons to whom the Software is
+#furnished to do so, subject to the following conditions:
+
+#The above copyright notice and this permission notice shall be included in all
+#copies or substantial portions of the Software.
+
+#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+#SOFTWARE.
+
 import os
+import random
+
 
 list = []
 root = "."
@@ -23,9 +47,32 @@ user_choice = input("Type (random) for a random one: ")
 
 class Paths:
     def random():
-        pass
-    def selection():
-        pass
+        global grub_th1
+        global ruc
+        rstr = str(random.random())
+        ruc = rstr[7]
+        if int(ruc) < len(list):
+            grub_th1 = list[int(ruc)]
+            Paths.gofor()
+        else:
+            rstr = str(random.random())
+            ruc = rstr[7]
+            Paths.random()
+    def gofor():
+        global grub_th1
+        print("")
+        print('"' + grub_th1 + '"' + " is the selected first theme.")
+        input("Press ENTER to continue...")
+        GSwitch.main()
+
+class GSwitch:
+    def main():
+        os.system("clear")
+        global ruc
+        global grub_th1
+        amount = ruc
+        print(amount)
+
 
 if user_choice.lower() == "random":
     Paths.random()
@@ -33,5 +80,7 @@ if user_choice.lower() == "random":
 #python will throw "invalid literal" error, instead of proceeding user to Paths.selection(), which could lead
 #to problems later on down the road
 elif type(int(user_choice)) == int:
-    grub_th1 = int(user_choice)
-    Paths.selection()
+    global ruc
+    ruc = int(user_choice) - 1
+    grub_th1 = list[ruc]
+    Paths.gofor()
